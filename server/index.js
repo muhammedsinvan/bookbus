@@ -5,7 +5,7 @@ import userroutes from './routes/user.js'
 import companyroutes from './routes/company.js'
 import adminroutes from './routes/admin.js'
 import cors from 'cors'
-
+import path from 'path'
 
 
 dotenv.config()
@@ -25,6 +25,20 @@ app.use(cors())
 app.use("/",userroutes)
 app.use("/company",companyroutes)
 app.use("/admin",adminroutes)
+
+
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1,'../', "/client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname1,'../',  "client", "build", "index.html")
+    );
+  });
+} else {
+  console.log("process.env.NODE_ENV:", process.env.NODE_ENV);
+  console.log("API is running in development mode");
+}
 
 
  const PORT =process.env.PORT || 5000

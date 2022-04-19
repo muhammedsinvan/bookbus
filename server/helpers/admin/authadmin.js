@@ -2,7 +2,7 @@
   
 import jwt from "jsonwebtoken"
 import asyncHandler from "express-async-handler"
-import userSchema from "../../models/usermodel.js"
+
 
 
 const protect = asyncHandler(async (req, res, next) => {

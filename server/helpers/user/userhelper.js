@@ -13,6 +13,7 @@ import mongoose from "mongoose";
 import company from '../../models/company.js'
 const ObjectId = mongoose.Types.ObjectId
 import bannermodel from '../../models/banner.js'
+import bcrypt from 'bcryptjs'
  
 const signupdata = asynchHandler(async(req,res)=>{
     const{firstname,lastname,email,password}=req.body
@@ -344,7 +345,9 @@ const checkpassword = (async(req,res)=>{
     const {values,newvalues} = req.body
     let check = await user.findOne({_id:id})
     if(check && (await check.matchPassword(values.password))){
-    let updatenewpassword = await user.findOneAndUpdate({_id:id},{password:newvalues.password})
+        const salt = await bcrypt.genSalt(10)
+        const password = await bcrypt.hash(newvalues.newpassword,salt)
+    let updatenewpassword = await user.findOneAndUpdate({_id:id},{password:password})
         console.log(updatenewpassword)
         res.json(200)
     }else{

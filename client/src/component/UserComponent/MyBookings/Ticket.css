@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+body{
+  overflow-x: hidden;
+}
+
+
+.tickets {
+  margin: auto;
+  font-family: "IBM Plex Sans", sans-serif;
+  
+}
+.tickets.airline {
+  max-width: 414px;
+  background: #ffffff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 736px;
+  border-radius: 30px;
+  -webkit-box-shadow: 2px 2px 40px #d6d6d6;
+  box-shadow: 2px 2px 40px #d6d6d6;
+  padding-top: 0;
+  overflow: hidden;
+  margin-top: 90px;
+}
+
+.ticket-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  /* padding: 10px 25px; */
+  background: #fff;
+  border-radius: 6px;
+  height: calc(100% - 94px);
+  
+}
+
+.route {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 600;
+  color: #121212;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  
+}
+.route p span:first-child {
+  font-size: 40px;
+  font-weight: 700;
+  color: #121212;
+}
+.route svg {
+  height: 50px;
+  fill: #121212;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.route p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.route p span:last-child {
+  font-size: 12px;
+  font-weight: 300;
+}
+.route p:first-child span:last-child {
+  text-align: left;
+}
+
+.time {
+  margin: 20px 0 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border-top: 1px dashed #cdcdcd;
+  padding: 25px 0;
+  border-bottom: 1px dashed #cdcdcd;
+}
+.time p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.time p span:last-child {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #121212;
+}
+
+.flight p span:last-child {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #121212;
+}
+
+.time p:last-child,
+.route p:last-child span:last-child {
+  text-align: right;
+}
+
+.flight {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.flight p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 50%;
+  margin: 20px 0 0;
+}
+.flight p:nth-child(even) {
+  text-align: right;
+}
+.flight p:first-child, .flight p:nth-child(2) {
+  margin-top: 0;
+}
+.flight p span:first-child {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #777676;
+}
+
+.time p span:first-child {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #777676;
+}
+
+.title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #f5f5f5;
+  padding: 20px 15px;
+  border-radius: 20px 20px 0 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.title svg {
+  height: 24px;
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+  width: 24px;
+  margin-left: 10px;
+  margin-right: 30px;
+}
+.title span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  font-weight: 400;
+  color: #191919;
+}
+
+.ticket-inner .image {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+  border-top: 1px dashed #cdcdcd;
+  padding-top: 20px;
+}
+.ticket-inner .image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: inherit;
+  object-fit: inherit;
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  border-top: 1px dashed #000;
+  padding-top: 20px;
+}
+
+.title span.share-icon {
+  margin-left: auto;
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.title span.share-icon svg {
+  height: 20px;
+  width: 20px;
+  fill: #121212;
+}
+
+.ticket-inner .cta {
+  margin-top: auto;
+  bottom: 20px;
+  position: relative;
+}
+.ticket-inner .cta a {
+  padding: 16px 20px;
+  background: #1976d2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 3px;
+}
+.ticket-inner .cta a .pdf-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.ticket-inner .cta a .pdf-icon svg {
+  height: 20px;
+  fill: #fff;
+}

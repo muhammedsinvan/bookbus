@@ -1,0 +1,15 @@
+body{
+    background-color: #ffff;
+}
+.text{
+    padding-left: 5%;
+    padding-top: 10%;
+}
+
+.bustime{
+    padding-top: 3%;
+}
+
+.duration{
+    padding-left: 30%;
+}

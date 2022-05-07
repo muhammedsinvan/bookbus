@@ -83,7 +83,7 @@ const Payment = () => {
 
   return (
 	  <Grid container sx={{minHeight:"80vh"}}>
-		<Grid item xs={6}>
+		<Grid item xs={6} style={{marginBottom:"2%"}}>
        <div class="ticket airline">
 	<div class="title"><span>Ticket Detail</span>
 	</div>
@@ -130,7 +130,7 @@ const Payment = () => {
 </div>
 </Grid>
 
-<Grid item xs={6} class="payment pay">
+<Grid item xs={6} class="payment pay" style={{marginBottom:"2%"}}>
 <div class="title"><span>Payment Detail</span></div>
 <div class="fare">
 <Typography sx={{fontWeight:600,fontSize:25}}>Bus Fare</Typography>
@@ -159,12 +159,14 @@ const Payment = () => {
 	<Typography sx={{fontWeight:600,fontSize:25}}>Pay With card</Typography>
 
 { coupen === null ? <StripeCheckout
+style={{width:"25%",marginRight:"2%"}}
 stripeKey='pk_test_51KkRC1ALfS5HumgAPbUATJue0FnHTuBXyMVyxALHEmltCwgCs3clmaWTwbj4T9GhFwkzW1vuGDCwNVs967sb7pFb00PURkiAZU'
  token={handleToken}
  amount={(data.price*seat.length)*100}
  billingAddress
  shippingAddress
-/> : <StripeCheckout
+/> : <StripeCheckout 
+style={{width:"25%",marginRight:"2%"}}
 stripeKey='pk_test_51KkRC1ALfS5HumgAPbUATJue0FnHTuBXyMVyxALHEmltCwgCs3clmaWTwbj4T9GhFwkzW1vuGDCwNVs967sb7pFb00PURkiAZU'
  token={handleToken}
  amount={(data.price*seat.length)-((data.price*seat.length)*coupen/100)*100}

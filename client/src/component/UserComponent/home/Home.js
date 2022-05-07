@@ -115,7 +115,7 @@ setbanner(getbanner.data)
             sx={{ ml: "45%", mt: "10.8%", height: 45, width: 180, borderRadius: 8 }}
             onClick={handleSubmit(onsubmit)}
           >
-            Seatch
+            Search
           </Button>
         </Grid>
       </Container>
@@ -139,13 +139,26 @@ setbanner(getbanner.data)
 
         ))}
   </Carousel>
-
+<div align="center" style={{marginTop:"3%"}}>
       <Typography
-        align="center"
+        component="span"
         sx={{ fontWeight: 600, fontSize: "1.5rem", mt: '3%' }}
       >
-        Why Book My Bus For Bus Booking?
+        Why {" "}
       </Typography>
+      <Typography
+        component="span"
+        sx={{ fontWeight: 600, fontSize: "1.8rem", mt: '3%' }}
+      >
+        Book My Bus {" "}
+      </Typography>
+      <Typography
+        component="span"
+        sx={{ fontWeight: 600, fontSize: "1.5rem", mt: '3%' }}
+      >
+        For Bus Booking?
+      </Typography>
+      </div>
       <Box sx={{ width: "100%", display: "flex", m: "2%" }}>
         <Box
           sx={{

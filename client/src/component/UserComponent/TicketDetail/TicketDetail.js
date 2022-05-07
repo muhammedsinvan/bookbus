@@ -269,7 +269,7 @@ const TicketDetail = () => {
         </Box>
       </Grid>
       <Grid item xs={6}>
-        <Box sx={{ backgroundColor: "white", height: "100%" }}>
+        <Box sx={{ backgroundColor: "white", height: "90%" }}>
           <Box
             sx={{
               backgroundColor: "white",

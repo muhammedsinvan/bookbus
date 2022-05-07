@@ -5,7 +5,7 @@ import userroutes from './routes/user.js'
 import companyroutes from './routes/company.js'
 import adminroutes from './routes/admin.js'
 import cors from 'cors'
-import path from 'path'
+import * as path from 'path'
 
 
 dotenv.config()
@@ -13,7 +13,6 @@ dotenv.config()
 connectDB()
 
 const app=express()
-
 
 
 app.use(express.json({limit: '25mb'}))

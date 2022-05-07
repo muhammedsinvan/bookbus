@@ -72,11 +72,9 @@ export default function SignUpSide() {
           xs={false}
           sm={4}
           md={3.5}
-          sx={{
-            backgroundImage: `url(${loginpic})`,
-          }}
-          
-        />
+        >
+          <img height="100%" width="100%" src='./one.png'/>
+          </Grid>
         
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
@@ -95,7 +93,7 @@ export default function SignUpSide() {
               Sign Up
             </Typography>
 
-            <Box component="form" noValidate onSubmit={handleSubmit(onsubmit)} sx={{ mt: 1 }}>
+            <Box component="form" noValidate  sx={{ mt: 1 }}>
                 <TextField
                 margin='normal'
                 required
@@ -138,12 +136,12 @@ export default function SignUpSide() {
                 error={errors.password ? true : false}
               />
               <Button
-                type="submit"
+                onClick={handleSubmit(onsubmit)}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
                
@@ -158,9 +156,9 @@ export default function SignUpSide() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                
+
               >
-                SignUp With google 
+                Sign Up With google 
               </Button>
             </Box>
           </Box>

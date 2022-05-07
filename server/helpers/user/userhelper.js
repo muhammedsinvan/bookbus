@@ -37,19 +37,26 @@ const signupdata = asynchHandler(async(req,res)=>{
 
 const logindata = asynchHandler(async(req,res)=>{
     const {email,password} =req.body
+    
     const users = await user.findOne({email})
-    if(users &&(await users.matchPassword(password))){
-        res.json({
-            _id:users._id,
-            firstname:users.firstname,
-            lastname:users.lastname,
-            email:users.email,
-            token:generateToken(users._id),  
-        })
+    if(users){
+        if(users &&(await users.matchPassword(password))){
+            res.json({
+                _id:users._id,
+                firstname:users.firstname,
+                lastname:users.lastname,
+                email:users.email,
+                token:generateToken(users._id),  
+            })
+        }else{
+            res.json(402)
+            throw new Error('Invalid password')
+        }
     }else{
-        res.status(401)
-        throw new Error('Invalid email or password')
+        res.json(401)
+        throw new Error('Invalid email')
     }
+    
 })
 
 

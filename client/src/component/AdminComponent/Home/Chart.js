@@ -48,6 +48,7 @@ const Chart = () => {
     (async()=>{
       try{
         let weeklydata = await axios.get('/admin/getweeklybooking')
+        console.log(weeklydata.data)
         setbookingdata(weeklydata.data)
       }catch(error){
         console.log(error)

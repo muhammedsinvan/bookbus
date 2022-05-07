@@ -27,6 +27,9 @@ export default function SignInSide() {
 
   const navigate=useNavigate()
 
+  const [emailerr,setemailerr] = React.useState(false)
+  const [passworderr,setpassworderr]= React.useState(false)
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Email is invalid'),
     password: Yup.string()
@@ -44,21 +47,30 @@ export default function SignInSide() {
   });
 
 
-  async function onsubmit  (data)  {
-      await axios.post("/login",data)
-      .then((res)=>{
-        if(res.status === 200){
-          localStorage.setItem("usertoken",res.data.token)
-          localStorage.setItem("userid",res.data._id)
-          navigate('/')
-        }else{
-          navigate('/login')
-        }
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
-  };
+
+  async function onsubmit (data){
+    try{
+      let res = await axios.post("/login",data)
+      if(res.data === 401){
+        setemailerr(true)
+        navigate("/login")
+      }else if(res.data === 402){
+        setemailerr(false)
+        setpassworderr(true)
+        navigate('/login')
+      }else{
+        setemailerr(false)
+        setpassworderr(false)
+        localStorage.setItem("usertoken",res.data.token)
+        localStorage.setItem("userid",res.data._id)
+        navigate('/')
+      }
+    }catch(err){
+      console.log(err)
+      navigate('/login')
+    }
+  }
+
 
   function goolelogin(){
     navigate('/googlelogin')
@@ -74,11 +86,9 @@ export default function SignInSide() {
           xs={false}
           sm={4}
           md={3.5}
-          sx={{
-            backgroundImage: `url(${loginpic})`,
-          }}
-          
-        />
+        >
+          <img height="100%" width="100%" src='./one.png'/>
+          </Grid>
         
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
@@ -96,7 +106,9 @@ export default function SignInSide() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit(onsubmit)} sx={{ mt: 1 }}>
+            {passworderr && <Typography sx={{color:"red",mt:"2%"}}>Invalid Password</Typography>}
+            {emailerr && <Typography sx={{color:"red",mt:"2%"}}>Invalid Email</Typography>}
+            <Box component="form" noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -118,10 +130,10 @@ export default function SignInSide() {
                 error={errors.password ? true : false}
               />
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleSubmit(onsubmit)} 
               >
                 Sign In
               </Button>
@@ -134,9 +146,8 @@ export default function SignInSide() {
                 </Grid>
               </Grid>
               <Button
-                type="submit"
+              type='submit'
                 fullWidth
-               
                 sx={{ mt: 3, mb: 2 }}
               >
                 <Googlelogin/>

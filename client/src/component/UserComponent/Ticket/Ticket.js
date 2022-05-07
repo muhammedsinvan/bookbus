@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
+import { Typography } from "@mui/material";
 
 const Ticket = (props) => {
 
@@ -15,11 +16,11 @@ const Ticket = (props) => {
 
 
   const generatePDF = () => {
-    const report = new JsPDF("portrait", "pt", "a4");
+    const report = new JsPDF("portrait", "pt", "a5");
     report.html(document.querySelector("#report")).then(() => {
       report.save("Busticket.pdf");
       toast("Success ticket download is completed",{type:"success"})
-      navigate("/");
+      // navigate("/");
     });
   }
 
@@ -35,7 +36,9 @@ const Ticket = (props) => {
       
         <div class="ticket-inner">
           <div id="report">
-         
+            <Typography align="center" sx={{fontSize:"1.7rem",fontWeight:"800",marginBottom:"3%",color:"darkcyan"}}>Book My Bus</Typography>
+            <Typography component="span" sx={{fontSize:"1.5rem",fontWeight:"600",marginLeft:"1%",marginBottom:"2%"}}>Bus Name :</Typography>
+         <Typography component="span" sx={{fontSize:"1.5rem",fontWeight:"600",marginLeft:"5%"}}>{bus.busname}</Typography>
             <div class="route">
               <p>
                 <span>{bus.from}</span>

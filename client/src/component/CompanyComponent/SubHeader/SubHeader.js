@@ -34,7 +34,7 @@ const SubHeader = () => {
     setAnchorElUser(null);
   };
 
-  const navigate=useNavigate()
+    const navigate=useNavigate()
 
   function addbus(){
       navigate('/company/home/addbus')

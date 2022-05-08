@@ -52,13 +52,29 @@ export default function CompanySignInSide() {
           localStorage.setItem("companyid",res.data._id)
           navigate('/company/home')
         }else{
-          navigate('/login')
+          navigate('/company/login')
         }
       })
       .catch((err)=>{
         console.log(err)
       }) 
   };
+
+
+  React.useEffect (()=>{
+    (async()=>{
+      try{
+        let token = localStorage.getItem("companytoken")
+        if (token){
+          navigate('/company/home')
+        }else{
+          navigate('/company/login')
+        }
+      }catch(error){
+        console.log(error)
+      }
+    })()
+  },[]) 
 
   return (
     <Container>
@@ -71,10 +87,9 @@ export default function CompanySignInSide() {
           xs={false}
           sm={4}
           md={3.5}
-          sx={{
-            backgroundImage: `url(${loginpic})`,
-          }}
-        />
+        >
+          <img height="100%" width="100%" src='/one.png'/>
+          </Grid>
         
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box

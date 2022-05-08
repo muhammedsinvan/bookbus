@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router()
 import {signupdata,logindata} from '../helpers/company/companyhelper.js'
-import {addbus,viewbus,singlebus,deletebus} from '../helpers/company/addbus.js'
+import {addbus,viewbus,singlebus,deletebus,bookingbus} from '../helpers/company/addbus.js'
 import {userdetail,getweeklybooking,getgenderbooking} from '../helpers/company/bookings.js'
 
 
@@ -15,6 +15,7 @@ router.get('/singlebus/:id',singlebus)
 router.get('/editbus/:id',singlebus)
 router.post('/deletebus/:id',deletebus)
 router.get('/bookingdata/:id',userdetail)
+router.get('/bookingdatas/:id',bookingbus)
 router.get('/getweeklybooking/:id',getweeklybooking)
 router.get('/getgenderbooking/:id',getgenderbooking)
 

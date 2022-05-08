@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import axios from "axios";
 import JsPDF from "jspdf";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -19,9 +19,10 @@ const Viewbookings = () => {
   const params = useParams();
 
   const [datas, setdata] = useState([]);
+  const [busdetail,setbusdetail] = useState([])
 
   const generatePDF = () => {
-    const report = new JsPDF("portrait", "pt", "a4");
+    const report = new JsPDF("portrait", "pt", "a2");
     report.html(document.querySelector("#report")).then(() => {
       report.save("report.pdf");
     });
@@ -31,12 +32,16 @@ const Viewbookings = () => {
     (async () => {
       try {
         let { data } = await axios.get(`/company/bookingdata/${params.id}`);
+        let busdetail = await axios.get(`/company/bookingdatas/${params.id}`)
+        setbusdetail(busdetail.data)
         setdata(data);
       } catch (error) {
         console.log(error);
       }
     })();
   }, []);
+  
+
 
   return (
     <Container fixed>
@@ -68,7 +73,11 @@ const Viewbookings = () => {
             bgcolor="#E2E8F0"
             color="#424242"
           >
+            <Typography sx={{fontSize:"2rem", fontWeight:"540",mr:"2%"}}>{busdetail.busname}</Typography>
+            
+
             BOOKINGS
+
           </Box>
 
           <Table sx={{ minWidth: 650 }} aria-label="simple table">

@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 import { Typography } from "@mui/material";
 import axios from "axios";
+import { Box } from "@mui/system";
 
 const data = [
   { name: "Group A", value: 400 },
@@ -40,7 +41,8 @@ const renderCustomizedLabel = ({
 export default function App() {
 
 
-    const [gender,setgender]=([])
+    const [gender,setgender]= useState([])
+   
 
     useEffect(()=>{
         (async()=>{
@@ -57,23 +59,25 @@ export default function App() {
 
 return (
  <>
- <Typography align="center" sx={{mt:15}}>heloo</Typography>
+ <Typography align="center" sx={{mt:15,fontSize:"1.5rem",fontWeight:700}}>Gender Bookings</Typography>
   <PieChart width={400} height={400}  >
     <Pie
-      data={data}
+      data={gender}
       cx={200}
       cy={200}
       labelLine={false}             
       label={renderCustomizedLabel}
       outerRadius={180}
       fill="#8884d8"
-      dataKey="value"
+      dataKey="count"
     >
-      {data.map((entry, index) => (
-        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+      {gender.map((entry, index) => (
+        <Cell  key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
       ))}
     </Pie>                                                                                                                             
   </PieChart>
+
+  <Box  sx={{width:"5%",backgroundColor:"blue"}}/>
   </>                                                                                                                                                                                                                                                                                                                                 
 );
 }

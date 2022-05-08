@@ -137,17 +137,7 @@ const Header = () => {
             </Button>
           </Box>
 
-          {/* Contact us */}
-          <Box
-            sx={{ flexGrow: 1, mr: 120, display: { xs: "none", md: "flex" } }}
-          >
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ color: "black", display: "block" }}
-            >
-              CONTACT US
-            </Button>
-          </Box>
+     
           {login ? null : (
             <Avatar
               onClick={profile}

@@ -30,6 +30,13 @@ const Report = () => {
     })()
   },[])
 
+  const generatePDF = () => {
+    const report = new JsPDF("portrait", "pt", "a2");
+    report.html(document.querySelector("#report")).then(() => {
+      report.save("report.pdf");
+    });
+  };
+
 
   return (
     <Container fixed>
@@ -44,6 +51,14 @@ const Report = () => {
         fontSize={34}
       ></Box>
       <TableContainer component={Paper}>
+      <Button
+            onClick={generatePDF}
+            type="button"
+            sx={{ color: "white", backgroundColor: "black" }}
+          >
+            {" "}
+            <DownloadIcon /> Export PDF
+          </Button>
         <Box
           component="span"
           display="flex"

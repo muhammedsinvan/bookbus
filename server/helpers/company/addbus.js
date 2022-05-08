@@ -59,7 +59,12 @@ const deletebus = (async(req,res)=>{
    res.json(data)
 })
 
-export{addbus,viewbus,singlebus,deletebus}
+const bookingbus = (async(req,res)=>{
+    const bookingbusdetail = await companybus.findOne({_id:req.params.id})
+    res.json(bookingbusdetail)
+})
+
+export{addbus,viewbus,singlebus,deletebus,bookingbus}
 
 
 

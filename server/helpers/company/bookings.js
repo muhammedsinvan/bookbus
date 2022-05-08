@@ -16,6 +16,8 @@ const userdetail = (async(req,res)=>{
 res.json(bookingdetail)
 })
 
+
+
 const getweeklybooking = (async(req,res)=>{
     let id = req.params.id
     let bookingweekly = await Bookings.aggregate([

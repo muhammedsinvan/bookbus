@@ -19,26 +19,30 @@ const MyTicket = (props) => {
 
 
   const generatePDF = () => {
-    const report = new JsPDF("portrait", "pt", "a4");
+    const report = new JsPDF("portrait", "pt", "a5");
     report.html(document.querySelector("#report")).then(() => {
       report.save("Busticket.pdf");
       toast("Success ticket download is completed",{type:"success"})
-      navigate("/");
+      navigate("/mybookings");
     });
   }
 
   function booking(){
-    navigate('/mybookings')
+    navigate('/')
   }
 
 
   return (
-    <Dialog open={open} >
+    <Dialog open={open}  >
       <div class="tickets airline">
-      {bookingdata.map((res,i)=>(
-        <div class="ticket-inner">
-          <div id="report">
-            <Typography align="center" sx={{fontSize:'1.4rem',fontWeight:800}}>{res.busdetail.busname}</Typography>
+      
+        <div class="ticket-inner" id="report">
+        {bookingdata.map((res,i)=>(
+          <div>
+
+            <Typography align="center" sx={{fontSize:'1.4rem',fontWeight:800,mb:"2%"}}>Book My Bus</Typography>
+            <Typography component="span" sx={{fontSize:'1.4rem',fontWeight:800}}>Bus Name : </Typography>
+            <Typography component="span" sx={{fontSize:'1.4rem',fontWeight:800}}>{res.busdetail.busname}</Typography>
             <div class="route" >
               <p>
                 <span>{res.busdetail.from}</span>
@@ -79,6 +83,7 @@ const MyTicket = (props) => {
  
             
           </div>
+           ))}
           <div class="cta">
             <a onClick={generatePDF} type="button">
               <span class="pdf-icon">
@@ -96,7 +101,7 @@ const MyTicket = (props) => {
             </a>
           </div>
         </div>
-        ))}
+       
       </div>
     </Dialog>
   );

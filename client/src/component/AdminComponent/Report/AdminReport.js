@@ -13,12 +13,16 @@ import { useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import JsPDF from "jspdf";
 import { toast } from "react-toastify";
+import {ExportToExcel} from '../../../Helpers/Execl'
 
 
 const AdminReport = () => {
 
 const [data,setdata] = useState([])
-const fileName = "myfile"; // here enter filename for your excel file
+
+const [datas, setDatas] = React.useState([])
+
+const fileName = "myfile";
 
 const adminInfo = localStorage.getItem('admintoken')
 
@@ -48,6 +52,14 @@ const config = {
   }
 
 
+  useEffect(() => {
+    const fetchData = () =>{
+     axios.get('https://jsonplaceholder.typicode.com/posts').then(r => setDatas(r.data) )
+    }
+    fetchData()
+  }, [])
+  
+
 
   return (
     <Container fixed>
@@ -62,7 +74,7 @@ const config = {
       ></Box>
     <Button variant="contained" onClick={generatePDF}>Download pdf</Button>
 
-    <Button sx={{ml:7}} variant="contained">Download Excel</Button>
+    <ExportToExcel  apiData={data} fileName={fileName} />
       <TableContainer component={Paper}>
         <Box
           component="span"

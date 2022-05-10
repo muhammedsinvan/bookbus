@@ -13,6 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const pages = ["My Bookings", "Contact Us"];
 
@@ -66,7 +68,13 @@ const Header = () => {
   }
 
   function mybookings() {
-    navigate("/mybookings");
+    let token = localStorage.getItem('usertoken')
+    if(token){
+      navigate("/mybookings");
+    }else{
+      toast("Please make login",{type:"success"})
+    }
+
   }
 
   return (

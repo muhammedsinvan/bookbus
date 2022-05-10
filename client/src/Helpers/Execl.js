@@ -1,8 +1,7 @@
 import React from 'react'
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
-import { Button } from '@mui/material';
-import ArticleIcon from '@mui/icons-material/Article';
+
 export const ExportToExcel = ({ apiData, fileName }) => {
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
@@ -17,6 +16,6 @@ export const ExportToExcel = ({ apiData, fileName }) => {
   };
 
   return (
-    <Button onClick={(e) => exportToCSV(apiData, fileName)}> <ArticleIcon/>Export XSL</Button>
+    <button onClick={(e) => exportToCSV(apiData, fileName)} style={{width:"10%",color:"white",backgroundColor:"black"}}>Export Excel</button>
   );
 };

@@ -14,6 +14,8 @@ export default function SeatSelection({data}) {
  
   const [seatNumber, setSeatnumber] = useState([]);
 
+  const [error,seterror] = useState(false)
+
 
   // const [passengers, setPassengers] = useState([])
   // useEffect(()=>{
@@ -75,8 +77,15 @@ export default function SeatSelection({data}) {
   const handleSubmitDetails = (e) => {
     console.log(data)
     e.preventDefault();
-    localStorage.setItem("reservedSeats",JSON.stringify(seatNumber));
-    navigate(`/ticketdetail/${data}`)
+    let token = localStorage.getItem('usertoken')
+    if(token){
+      seterror(false)
+      localStorage.setItem("reservedSeats",JSON.stringify(seatNumber));
+      navigate(`/ticketdetail/${data}`)
+    }else{
+      seterror(true)
+    }
+
   }
 
   // const renderPassengerData = (seatArray) => {
@@ -103,7 +112,6 @@ export default function SeatSelection({data}) {
       try{
         let seatno = await axios.get(`/getseatno/${data}`)
           setReservedSeat(seatno.data.seat)
-         
       } catch(error){
         console.log(error)
       }
@@ -290,12 +298,13 @@ export default function SeatSelection({data}) {
             sx={{
               width: 500,
               backgroundColor: "white",
-              height: 150,
+              minHight: 170,
               mt: 15,
               ml: 5,
               boxShadow: 7,
             }}
           >
+            { error && <Typography align="center" sx={{color:"red",fontSize:"1.3rem",fontWeight:"700"}}>Please make login</Typography>}
             <Typography sx={{ fontWeight: 650, pl: 7, pt: 4 }}>
               Seats Sealected
             </Typography>
@@ -310,7 +319,7 @@ export default function SeatSelection({data}) {
             
             <Button 
               onClick={(e) => handleSubmitDetails(e)}
-              sx={{ backgroundColor: "yellow", ml:26}}
+              sx={{ backgroundColor: "yellow", ml:26,mb:"1%"}}
             >
               Submit
             </Button>

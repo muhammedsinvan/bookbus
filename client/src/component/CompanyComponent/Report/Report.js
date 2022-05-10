@@ -14,9 +14,15 @@ import JsPDF from "jspdf";
 import DownloadIcon from "@mui/icons-material/Download";
 import moment from "moment";
 
+import {ExportToExcel} from '../../../Helpers/Execl'
+
 const Report = () => {
 
   const [data,setdata] = useState([])
+
+  const [datas, setDatas] = React.useState([])
+
+  const fileName = "myfile";
 
   useEffect(()=>{
     (async()=>{
@@ -29,6 +35,14 @@ const Report = () => {
       }
     })()
   },[])
+  
+
+  useEffect(() => {
+    const fetchData = () =>{
+     axios.get('https://jsonplaceholder.typicode.com/posts').then(r => setDatas(r.data) )
+    }
+    fetchData()
+  }, [])
 
   const generatePDF = () => {
     const report = new JsPDF("portrait", "pt", "a2");
@@ -51,14 +65,18 @@ const Report = () => {
         fontSize={34}
       ></Box>
       <TableContainer component={Paper}>
-      <Button
+      <Button 
             onClick={generatePDF}
             type="button"
-            sx={{ color: "white", backgroundColor: "black" }}
+            sx={{ color: "white", backgroundColor: "black" ,mr:"2%"}}
           >
             {" "}
             <DownloadIcon /> Export PDF
           </Button>
+          
+          <ExportToExcel style={{minWidth:"20%"}}  apiData={data} fileName={fileName} />
+           
+
         <Box
           component="span"
           display="flex"
